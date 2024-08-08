@@ -72,9 +72,7 @@ def train_loop(job_data) -> None:
                     tau=job_data.tau, 
                     gamma=job_data.gamma, **job_data.alg_hyper_params)
     
-    
-
-    if job_data.job_name =="checkpoint.pt":
+    if job_data.job_name == "checkpoint.pt":
         foldername = os.path.join(os.path.dirname(os.path.realpath(__file__)), f"baseline_SB3/myoChal24/{job_data.env}")
         file_path = os.path.join(foldername, job_data.job_name)
         if os.path.isfile(file_path):
@@ -82,6 +80,8 @@ def train_loop(job_data) -> None:
             model.policy.load_state_dict(torch.load(file_path))
         else:
             raise FileNotFoundError(f"No file found at the specified path: {file_path}. See https://github.com/MyoHub/myosuite/blob/dev/myosuite/agents/README.md to download one.")
+    elif os.path.isfile(job_data.job_name):
+        model.load(job_data.job_name)
     else:
         print("No checkpoint loaded, training starts.")
 
