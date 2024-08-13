@@ -11,7 +11,7 @@ warnings.filterwarnings(action='once')
 # myoLegWalk-v0
 # myoChallengeRunTrackP1-v0
 env_string = 'myoChallengeRunTrackP1-v0' 
-ckpt_path  = 'outputs/2024-08-12/18-27-03/restore_checkpoint.zip'
+ckpt_path  = '/Disk4/xinpeng/myosuite/myosuite/agents/outputs/2024-08-08/17-30-43/restore_checkpoint.zip'
 video_name = 'chalRun'
 env = gym.make(env_string, reset_type='init')
 
@@ -20,7 +20,7 @@ model = PPO("MlpPolicy", env, verbose=0).load(ckpt_path)
 # Render trained policy
 frames = []
 all_rewards = []
-for _ in tqdm(range(5)): # Randomization over different terrain types
+for _ in tqdm(range(1)): # Randomization over different terrain types
   env.reset()
   ep_rewards = []
   done = False
